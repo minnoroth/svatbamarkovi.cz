@@ -2,7 +2,7 @@ const NAV_LINKS = [
   { label: 'Obřad', href: '#info' },
   { label: 'Oslava', href: '#info' },
   { label: 'Dresscode', href: '#dresscode' },
-  { label: 'RSVP', href: '#rsvp' },
+  { label: 'Účast', href: '#rsvp' },
 ]
 
 export default function Footer() {

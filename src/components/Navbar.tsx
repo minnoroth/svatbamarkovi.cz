@@ -4,7 +4,7 @@ const NAV_LINKS = [
   { label: 'Obřad & Oslava', href: '#info' },
   { label: 'Dresscode', href: '#dresscode' },
   { label: 'Foto', href: '#foto' },
-  { label: 'RSVP', href: '#rsvp' },
+  { label: 'Účast', href: '#rsvp' },
 ]
 
 export default function Navbar() {
@@ -56,9 +56,15 @@ export default function Navbar() {
           onClick={() => setMenuOpen((o) => !o)}
           aria-label={menuOpen ? 'Zavřít menu' : 'Otevřít menu'}
         >
-          <span className={`block w-6 h-0.5 bg-brown-900 transition-transform duration-200 ${menuOpen ? 'translate-y-2 rotate-45' : ''}`} />
-          <span className={`block w-6 h-0.5 bg-brown-900 transition-opacity duration-200 ${menuOpen ? 'opacity-0' : ''}`} />
-          <span className={`block w-6 h-0.5 bg-brown-900 transition-transform duration-200 ${menuOpen ? '-translate-y-2 -rotate-45' : ''}`} />
+          <span
+            className={`block w-6 h-0.5 bg-brown-900 transition-transform duration-200 ${menuOpen ? 'translate-y-2 rotate-45' : ''}`}
+          />
+          <span
+            className={`block w-6 h-0.5 bg-brown-900 transition-opacity duration-200 ${menuOpen ? 'opacity-0' : ''}`}
+          />
+          <span
+            className={`block w-6 h-0.5 bg-brown-900 transition-transform duration-200 ${menuOpen ? '-translate-y-2 -rotate-45' : ''}`}
+          />
         </button>
       </nav>
 

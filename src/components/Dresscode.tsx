@@ -12,16 +12,17 @@ export default function Dresscode() {
         <p className="font-sans text-label uppercase tracking-[0.15em] text-taupe-400 mb-3">
           Dress code
         </p>
-        <h2 className="font-serif text-h2 text-brown-900 font-light">
-          Přijďte v barvách louky
-        </h2>
+        <h2 className="font-serif text-h2 text-brown-900 font-light">Přijďte v barvách louky</h2>
         <OrnamentalDivider className="mt-6 mb-6" />
         <p className="font-sans text-body-lg text-taupe-600 font-light max-w-md mx-auto">
-          Oceníme zemité a přírodní tóny. Formální, ale ne přísně.
+          Oceníme zemité a přírodní tóny. Svatba se ponese ve stylu Semi-Formal až Smart-Casual.
         </p>
       </div>
 
-      <div ref={swatchesRef} className="reveal flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
+      <div
+        ref={swatchesRef}
+        className="reveal flex flex-wrap justify-center gap-4 max-w-2xl mx-auto"
+      >
         {SWATCHES.map((swatch) => (
           <div key={swatch.name} className="flex flex-col items-center gap-2">
             <div

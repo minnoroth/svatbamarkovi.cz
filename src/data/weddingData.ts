@@ -7,7 +7,7 @@ export const CEREMONY: EventInfo = {
   title: 'Kostel Panny Marie Bolestné',
   time: '11:00',
   address: 'Lomec u Vodňan',
-  note: 'Prosíme o příchod nejpozději 20 minut před obřadem.',
+  note: 'Prosíme o příchod nejpozději 30 minut před obřadem.',
   mapUrl: 'https://maps.app.goo.gl/wAHmzi3r4byQiYGP8',
 }
 
@@ -16,7 +16,7 @@ export const LUNCH: EventInfo = {
   title: 'Svatební hostina',
   time: '13:30',
   address: 'Libějovice',
-  note: 'Slavnostní oběd pro rodinu a nejbližší. Ostatní se prosíme zařiďte po vlastní ose.',
+  note: 'Slavnostní oběd pro rodinu a nejbližší. Ostatní svatebčany prosíme, aby si zařídili oběd po vlastní ose.',
   mapUrl: 'https://maps.app.goo.gl/r721LgLKoTzZrKvP8',
 }
 
@@ -25,7 +25,7 @@ export const RECEPTION: EventInfo = {
   title: 'Statek Libějovice',
   time: '16:00',
   address: 'Libějovice',
-  note: 'Rustikální prostředí, doporučujeme pohodlnou obuv.',
+  note: 'Všichni se sejdeme na svatební program, hudbu a raut.',
   mapUrl: 'https://maps.app.goo.gl/r721LgLKoTzZrKvP8',
 }
 
