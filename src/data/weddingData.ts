@@ -31,29 +31,39 @@ export const RECEPTION: EventInfo = {
 
 export const PHOTOS: Photo[] = [
   {
-    src: 'https://picsum.photos/seed/wedding1/600/800',
-    alt: 'Spolu v přírodě',
-    caption: 'Naše cestování',
+    src: '../../public/photos/lavicka.JPG',
+    alt: 'V rajské zahradě',
+    caption: 'V rajské zahradě',
   },
   {
-    src: 'https://picsum.photos/seed/wedding2/600/800',
-    alt: 'Šťastné chvíle',
-    caption: 'Radost ze života',
+    src: '../../public/photos/cernobila.JPG',
+    alt: 'Jedna svatební..',
+    caption: 'Jedna svatební..',
   },
   {
-    src: 'https://picsum.photos/seed/wedding3/600/800',
-    alt: 'Procházka v lese',
-    caption: 'Naše místo',
+    src: '../../public/photos/zasnuby.jpeg',
+    alt: 'První máj',
+    caption: 'První máj',
   },
   {
-    src: 'https://picsum.photos/seed/wedding4/600/800',
-    alt: 'Západ slunce',
-    caption: 'Zlatá hodinka',
+    src: '../../public/photos/duo.jpeg',
+    alt: 'Jdeme si pro byt',
+    caption: 'Jdeme si pro byt',
   },
   {
-    src: 'https://picsum.photos/seed/wedding5/600/800',
-    alt: 'Kvítí na louce',
-    caption: 'Naše léto',
+    src: '../../public/photos/krumlov.jpeg',
+    alt: 'Cyklistická',
+    caption: 'Cyklistická',
+  },
+  {
+    src: '../../public/photos/rim.JPG',
+    alt: 'Prázdniny v Římě',
+    caption: 'Prázdniny v Římě',
+  },
+  {
+    src: '../../public/photos/arco.jpeg',
+    alt: 'Castello di Arco',
+    caption: 'Castello di Arco',
   },
 ]
 

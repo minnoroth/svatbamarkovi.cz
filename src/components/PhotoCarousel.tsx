@@ -22,27 +22,39 @@ function ChevronRight() {
 export default function PhotoCarousel() {
   const [index, setIndex] = useState(0)
   const [cardWidth, setCardWidth] = useState(0)
+  const [containerWidth, setContainerWidth] = useState(0)
   const trackRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const touchStartX = useRef(0)
   const headingRef = useReveal<HTMLDivElement>()
 
-  const maxIndex = PHOTOS.length - 1
+  // cardWidth includes trailing gap, but the last visible card doesn't need one
+  const visibleCount = cardWidth > 0 ? Math.floor((containerWidth + 16) / cardWidth) || 1 : 1
+  const maxIndex = Math.max(0, PHOTOS.length - visibleCount)
 
   const prev = () => setIndex((i) => Math.max(0, i - 1))
   const next = () => setIndex((i) => Math.min(maxIndex, i + 1))
 
-  // Measure card width including gap
+  // Measure card width and container width
   useEffect(() => {
     const updateWidth = () => {
       const firstCard = trackRef.current?.children[0]
       if (firstCard instanceof HTMLElement) {
         setCardWidth(firstCard.offsetWidth + 16) // card + gap-4
       }
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth)
+      }
     }
     updateWidth()
     window.addEventListener('resize', updateWidth)
     return () => window.removeEventListener('resize', updateWidth)
   }, [])
+
+  // Clamp index when maxIndex shrinks (e.g. on resize)
+  useEffect(() => {
+    setIndex((i) => Math.min(i, maxIndex))
+  }, [maxIndex])
 
   // Keyboard navigation
   useEffect(() => {
@@ -52,7 +64,7 @@ export default function PhotoCarousel() {
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [])
+  }, [maxIndex])
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX
@@ -64,7 +76,11 @@ export default function PhotoCarousel() {
     else if (delta < -50) prev()
   }
 
-  const offset = cardWidth > 0 ? index * cardWidth : 0
+  const offset = cardWidth > 0
+    ? (index === maxIndex && trackRef.current
+      ? trackRef.current.scrollWidth - containerWidth
+      : index * cardWidth)
+    : 0
 
   return (
     <section id="foto" className="bg-white py-24 overflow-hidden">
@@ -81,6 +97,7 @@ export default function PhotoCarousel() {
       <div className="relative max-w-5xl mx-auto px-4">
         {/* Track */}
         <div
+          ref={containerRef}
           className="overflow-hidden"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
@@ -136,7 +153,7 @@ export default function PhotoCarousel() {
 
         {/* Dots */}
         <div className="flex justify-center gap-2 mt-8" role="tablist" aria-label="Slides">
-          {PHOTOS.map((_, i) => (
+          {Array.from({ length: maxIndex + 1 }, (_, i) => (
             <button
               key={i}
               role="tab"
