@@ -31,37 +31,37 @@ export const RECEPTION: EventInfo = {
 
 export const PHOTOS: Photo[] = [
   {
-    src: '../../public/photos/lavicka.JPG',
+    src: '/photos/lavicka.JPG',
     alt: 'V rajské zahradě',
     caption: 'V rajské zahradě',
   },
   {
-    src: '../../public/photos/cernobila.JPG',
+    src: '/photos/cernobila.JPG',
     alt: 'Jedna svatební..',
     caption: 'Jedna svatební..',
   },
   {
-    src: '../../public/photos/zasnuby.jpeg',
+    src: '/photos/zasnuby.jpeg',
     alt: 'První máj',
     caption: 'První máj',
   },
   {
-    src: '../../public/photos/duo.jpeg',
+    src: '/photos/duo.jpeg',
     alt: 'Jdeme si pro byt',
     caption: 'Jdeme si pro byt',
   },
   {
-    src: '../../public/photos/krumlov.jpeg',
+    src: '/photos/krumlov.jpeg',
     alt: 'Cyklistická',
     caption: 'Cyklistická',
   },
   {
-    src: '../../public/photos/rim.JPG',
+    src: '/photos/rim.JPG',
     alt: 'Prázdniny v Římě',
     caption: 'Prázdniny v Římě',
   },
   {
-    src: '../../public/photos/arco.jpeg',
+    src: '/photos/arco.jpeg',
     alt: 'Castello di Arco',
     caption: 'Castello di Arco',
   },
