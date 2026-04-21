@@ -46,7 +46,7 @@ export default function RSVP() {
         </p>
 
         <a
-          href="#"
+          href="https://forms.gle/9b32ZPRGRkfPyPMY7"
           className="inline-flex items-center gap-3 bg-pistachio-600 text-white font-sans text-body font-light tracking-wide px-10 py-4 rounded-full shadow-elevated hover:bg-pistachio-800 active:scale-[0.98] transition-all duration-200"
         >
           Potvrdit účast
