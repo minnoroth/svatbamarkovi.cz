@@ -374,17 +374,20 @@ Subtext: "Oceníme zemité a přírodní tóny. Formální, ale ne přísně."  
 </div>
 ```
 
-**Swatch palette to show (8 swatches):**
+**Swatch palette to show (11 swatches):**
 | Name | Hex |
 |---|---|
 | Pistáciová | `#8DB87E` |
-| Světlá zelená | `#C8DCC0` |
 | Šalvěj | `#A8C4A0` |
+| Levandule | `#B8A5D4` |
+| Kosatec | `#6B5BA8` |
+| Pomněnka | `#A8BFDC` |
 | Pudrová růžová | `#F2CCBF` |
 | Starorůžová | `#E5967E` |
+| Měsíček | `#C97A4A` |
+| Pampeliška | `#D4B85A` |
 | Krémová | `#EDE5D4` |
 | Teplá béžová | `#C8B89A` |
-| Taupe | `#A89880` |
 
 **"Prosíme vyhnout se" (avoid) row:**
 ```

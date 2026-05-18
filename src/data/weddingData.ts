@@ -69,13 +69,16 @@ export const PHOTOS: Photo[] = [
 
 export const SWATCHES: Swatch[] = [
   { name: 'Pistáciová', hex: '#8DB87E' },
-  { name: 'Světlá zelená', hex: '#C8DCC0' },
   { name: 'Šalvěj', hex: '#A8C4A0' },
+  { name: 'Levandule', hex: '#B8A5D4' },
+  { name: 'Kosatec', hex: '#6B5BA8' },
+  { name: 'Pomněnka', hex: '#A8BFDC' },
   { name: 'Pudrová růžová', hex: '#F2CCBF' },
   { name: 'Starorůžová', hex: '#E5967E' },
+  { name: 'Měsíček', hex: '#C97A4A' },
+  { name: 'Pampeliška', hex: '#D4B85A' },
   { name: 'Krémová', hex: '#EDE5D4' },
   { name: 'Teplá béžová', hex: '#C8B89A' },
-  { name: 'Taupe', hex: '#A89880' },
 ]
 
 export const AVOID_COLORS = ['Bílá', 'Černá', 'Výrazné vzory']
