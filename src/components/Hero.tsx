@@ -25,7 +25,7 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center px-6">
-        <p className="font-sans text-label uppercase tracking-[0.15em] text-cream-200 mb-4 animate-fade-in [animation-delay:300ms]">
+        <p className="font-sans text-label uppercase tracking-[0.15em] text-cream-200 mb-4 mt-40 animate-fade-in [animation-delay:300ms]">
           Milí přátelé a rodino, zveme vás na náš velký den
         </p>
 
