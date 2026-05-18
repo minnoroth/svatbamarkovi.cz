@@ -42,7 +42,7 @@ export default function RSVP() {
 
         <p className="font-sans text-body-lg text-taupe-600 font-light leading-relaxed mb-10 max-w-sm mx-auto">
           Moc bychom vás tam chtěli mít. Prosíme o potvrzení účasti do{' '}
-          <strong className="font-normal text-brown-900">31. května 2026</strong>.
+          <strong className="font-normal text-brown-900">14. června 2026</strong>.
         </p>
 
         <a
