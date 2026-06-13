@@ -40,7 +40,7 @@ export default function Hero() {
         <OrnamentalDivider className="mb-6 animate-fade-up [animation-delay:500ms]" />
 
         <p className="font-serif text-body-lg text-cream-200 font-light animate-fade-up [animation-delay:700ms]">
-          Kostel Panny Marie Bolestné, Lomec u Vodňan
+          Kostel Jména Panny Marie, Lomec u Vodňan
         </p>
 
         <a

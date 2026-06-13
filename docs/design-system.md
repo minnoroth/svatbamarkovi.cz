@@ -238,7 +238,7 @@ export default config
 [gap: 24px]  Date line: "29. srpna 2026"
              font-serif text-h3 italic text-cream-50 font-light
 [gap: 8px]   Gold ornamental divider (SVG — see section 5)
-[gap: 24px]  Location: "Kostel Panny Marie Bolestné, Lomec u Vodňan"
+[gap: 24px]  Location: "Kostel Jména Panny Marie, Lomec u Vodňan"
              font-sans text-body-lg text-cream-200 font-light
 [gap: 48px]  CTA button — scroll down arrow (chevron-down, 28px, text-gold-300, animate-bounce)
 ```
@@ -325,7 +325,7 @@ font-serif text-h2 text-brown-900 font-light text-center mb-16
   </p>
   <!-- Title -->
   <h3 class="font-serif text-h3 text-brown-900 font-light italic">
-    Kostel Panny Marie Bolestné / Statek v okolí
+    Kostel Jména Panny Marie / Statek v okolí
   </h3>
   <!-- Time row -->
   <div class="flex items-center gap-3 text-taupe-600">

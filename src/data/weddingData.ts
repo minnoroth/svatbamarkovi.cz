@@ -4,7 +4,7 @@ export const WEDDING_DATE = new Date('2026-08-29T11:00:00')
 
 export const CEREMONY: EventInfo = {
   label: 'Obřad',
-  title: 'Kostel Panny Marie Bolestné',
+  title: 'Kostel Jména Panny Marie',
   time: '11:00',
   address: 'Lomec u Vodňan',
   note: 'Prosíme o příchod nejpozději 30 minut před obřadem.',
