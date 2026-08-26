@@ -1,11 +1,5 @@
 import { useEffect, useState } from 'react'
-
-const NAV_LINKS = [
-  { label: 'Obřad & Oslava', href: '#info' },
-  { label: 'Dresscode', href: '#dresscode' },
-  { label: 'Foto', href: '#foto' },
-  { label: 'Účast', href: '#rsvp' },
-]
+import { NAV_LINKS } from '../data/weddingData'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)

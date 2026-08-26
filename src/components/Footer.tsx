@@ -1,9 +1,4 @@
-const NAV_LINKS = [
-  { label: 'Obřad', href: '#info' },
-  { label: 'Oslava', href: '#info' },
-  { label: 'Dresscode', href: '#dresscode' },
-  { label: 'Účast', href: '#rsvp' },
-]
+import { NAV_LINKS } from '../data/weddingData'
 
 export default function Footer() {
   return (

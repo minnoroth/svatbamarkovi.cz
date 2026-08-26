@@ -20,9 +20,10 @@ function ChevronRight() {
 }
 
 export default function PhotoCarousel() {
-  const [index, setIndex] = useState(0)
+  const [rawIndex, setRawIndex] = useState(0)
   const [cardWidth, setCardWidth] = useState(0)
   const [containerWidth, setContainerWidth] = useState(0)
+  const [trackWidth, setTrackWidth] = useState(0)
   const trackRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const touchStartX = useRef(0)
@@ -31,16 +32,22 @@ export default function PhotoCarousel() {
   // cardWidth includes trailing gap, but the last visible card doesn't need one
   const visibleCount = cardWidth > 0 ? Math.floor((containerWidth + 16) / cardWidth) || 1 : 1
   const maxIndex = Math.max(0, PHOTOS.length - visibleCount)
+  // Clamp on read instead of syncing state in an effect — maxIndex shrinks on resize
+  const index = Math.min(rawIndex, maxIndex)
 
-  const prev = () => setIndex((i) => Math.max(0, i - 1))
-  const next = () => setIndex((i) => Math.min(maxIndex, i + 1))
+  const prev = () => setRawIndex((i) => Math.max(0, Math.min(i, maxIndex) - 1))
+  const next = () => setRawIndex((i) => Math.min(maxIndex, i + 1))
 
-  // Measure card width and container width
+  // Measure card, track and container widths
   useEffect(() => {
     const updateWidth = () => {
-      const firstCard = trackRef.current?.children[0]
+      const track = trackRef.current
+      const firstCard = track?.children[0]
       if (firstCard instanceof HTMLElement) {
         setCardWidth(firstCard.offsetWidth + 16) // card + gap-4
+      }
+      if (track) {
+        setTrackWidth(track.scrollWidth)
       }
       if (containerRef.current) {
         setContainerWidth(containerRef.current.offsetWidth)
@@ -51,16 +58,11 @@ export default function PhotoCarousel() {
     return () => window.removeEventListener('resize', updateWidth)
   }, [])
 
-  // Clamp index when maxIndex shrinks (e.g. on resize)
-  useEffect(() => {
-    setIndex((i) => Math.min(i, maxIndex))
-  }, [maxIndex])
-
   // Keyboard navigation
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') prev()
-      if (e.key === 'ArrowRight') next()
+      if (e.key === 'ArrowLeft') setRawIndex((i) => Math.max(0, Math.min(i, maxIndex) - 1))
+      if (e.key === 'ArrowRight') setRawIndex((i) => Math.min(maxIndex, i + 1))
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
@@ -76,11 +78,13 @@ export default function PhotoCarousel() {
     else if (delta < -50) prev()
   }
 
-  const offset = cardWidth > 0
-    ? (index === maxIndex && trackRef.current
-      ? trackRef.current.scrollWidth - containerWidth
-      : index * cardWidth)
-    : 0
+  // On the last slide align the track's end with the container edge instead of leaving a gap
+  const offset =
+    cardWidth > 0
+      ? index === maxIndex
+        ? Math.max(0, trackWidth - containerWidth)
+        : index * cardWidth
+      : 0
 
   return (
     <section id="foto" className="bg-white py-24 overflow-hidden">
@@ -159,7 +163,7 @@ export default function PhotoCarousel() {
               role="tab"
               aria-selected={i === index}
               aria-label={`Foto ${i + 1}`}
-              onClick={() => setIndex(i)}
+              onClick={() => setRawIndex(i)}
               className={`h-2 rounded-full transition-all duration-200 ${
                 i === index
                   ? 'w-6 bg-pistachio-800'

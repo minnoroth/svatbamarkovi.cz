@@ -6,17 +6,18 @@
 
 ## Co bylo postaveno
 
-Kompletní jednostránkový svatební web pro Michala a Simonu (29. 8. 2026). Web obsahuje 7 sekcí:
+Kompletní jednostránkový svatební web pro Michala a Simonu (29. 8. 2026). Web obsahuje 8 sekcí:
 
 | Sekce | Komponenta | Popis |
 |---|---|---|
 | Navigace | `Navbar.tsx` | Fixní navbar, průhledný → bílý při scrollu, hamburger menu pro mobil |
 | Hero | `Hero.tsx` | Fullscreen s fotkou na pozadí, gradient overlay, florální ornamenty, animovaný vstup |
 | Odpočet | `Countdown.tsx` | Živý odpočet do 29. 8. 2026 11:00, 4 karty (dny/hodiny/minuty/sekundy) |
-| Informace | `WeddingInfo.tsx` | Dvě event karty — Obřad (Lomec) a Oslava (Statek), s ikonami a adresami |
+| Harmonogram | `Schedule.tsx` | Vertikální timeline svatebního dne (14 položek, ikony, poznámky), seskupená podle míst (Lomec / Statek) s odkazy na mapu |
+| Informace | `GuestInfo.tsx` | Karty s praktickými informacemi pro hosty — mapa a parkování, dary, ubytování, páteční pomocníci, počasí |
 | Dresscode | `Dresscode.tsx` | 8 barevných swatchů, popis stylu, seznam barev k vyhnout |
 | Fotogalerie | `PhotoCarousel.tsx` | Carousel s šipkami, dots, klávesnicí (←→) a swipe gestem |
-| RSVP | `RSVP.tsx` | CTA sekce s tlačítkem (placeholder pro Google Forms) |
+| Kontakty | `Contacts.tsx` | Kontakty na svědky pro svatební den — klikatelná `tel:` tlačítka (nahradilo RSVP po uzávěrce) |
 | Footer | `Footer.tsx` | Tmavý, zlatý script font, navigační linky |
 
 ---
@@ -29,7 +30,8 @@ Kompletní jednostránkový svatební web pro Michala a Simonu (29. 8. 2026). We
 - **Žádné external UI knihovny** — vše psáno ručně, zero bundle bloat
 
 ### Architektura
-- `src/data/weddingData.ts` — veškerý obsah na jednom místě (texty, fotky, barvy swatchů)
+- `src/data/weddingData.ts` — veškerý obsah na jednom místě (harmonogram, místa, informace pro hosty, kontakty, navigace, fotky, barvy swatchů)
+- `src/components/icons.tsx` — sdílené inline SVG ikony (harmonogram, informace, telefon, mapa)
 - `src/types/index.ts` — sdílené TypeScript typy
 - `src/hooks/useCountdown.ts` — standalone hook pro countdown
 - `src/hooks/useReveal.ts` — IntersectionObserver pro scroll animace
@@ -84,16 +86,15 @@ import heroBg from '../assets/hero.jpg'
 
 ---
 
-## Jak doplnit Google Forms URL pro RSVP
+## Jak upravit harmonogram, informace a kontakty
 
-1. Vytvoř Google Forms formulář
-2. Zkopíruj URL formuláře
-3. Otevři `src/components/RSVP.tsx`
-4. Najdi `<a href="#">` a nahraď `#` URL formuláře:
+Vše je v `src/data/weddingData.ts`:
 
-```tsx
-<a href="https://forms.gle/tvůj-formulář" target="_blank" rel="noopener noreferrer" ...>
-```
+- `SCHEDULE` — položky harmonogramu (`time`, `title`, `icon`, `venue`, volitelně `note`). Ikony jsou klíče typu `ScheduleIconName` (`src/types/index.ts`), definované v `src/components/icons.tsx`.
+- `VENUES` — dvě místa (Lomec / Libějovice) s adresou a odkazem na mapu; harmonogram se podle nich seskupuje.
+- `GUEST_INFO` — karty v sekci Informace (`icon`, `title`, `text`, volitelně `link`).
+- `WITNESSES` — kontakty na svědky; telefon v E.164 formátu (`+420…`), zobrazení se formátuje automaticky.
+- `NAV_LINKS` — položky navigace sdílené Navbarem i Footerem.
 
 ---
 
