@@ -13,12 +13,16 @@ export const WEDDING_DATE = new Date('2026-08-29T11:00:00')
 
 export const MAP_URL = 'https://mapy.com/s/konategono'
 
+export const QUIZ_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSdj4o52VHiukIpNzrQ0vgsQNZ6JnmIAc7ULgmQm29cMURanKQ/viewform'
+
 export const NAV_LINKS: NavLink[] = [
   { label: 'Harmonogram', href: '#harmonogram' },
   { label: 'Informace', href: '#informace' },
   { label: 'Dresscode', href: '#dresscode' },
   { label: 'Foto', href: '#foto' },
   { label: 'Kontakty', href: '#kontakty' },
+  { label: 'Kvíz', href: QUIZ_URL, external: true },
 ]
 
 export const VENUES: Record<VenueId, Venue> = {
