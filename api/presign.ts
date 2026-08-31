@@ -1,3 +1,4 @@
+import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { AwsClient } from 'aws4fetch'
 import {
   CONTENT_TYPES,
@@ -7,20 +8,7 @@ import {
   sanitizeSegment,
 } from '../shared/upload-config'
 
-interface PresignRequestBody {
-  fileName?: unknown
-  fileSize?: unknown
-  guestName?: unknown
-}
-
 const URL_EXPIRY_SECONDS = 3600
-
-function json(status: number, body: Record<string, unknown>): Response {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { 'Content-Type': 'application/json' },
-  })
-}
 
 /**
  * Issues a presigned R2 PUT URL for one guest photo/video.
@@ -29,12 +17,14 @@ function json(status: number, body: Record<string, unknown>): Response {
  * R2 presigned PUT cannot enforce Content-Length), Content-Type is part of
  * the signature, short expiry, and the UPLOADS_ENABLED kill switch.
  */
-export default async function handler(request: Request): Promise<Response> {
-  if (request.method !== 'POST') {
-    return json(405, { error: 'method_not_allowed' })
+export default async function handler(req: VercelRequest, res: VercelResponse): Promise<void> {
+  if (req.method !== 'POST') {
+    res.status(405).json({ error: 'method_not_allowed' })
+    return
   }
   if (process.env.UPLOADS_ENABLED !== 'true') {
-    return json(503, { error: 'uploads_disabled' })
+    res.status(503).json({ error: 'uploads_disabled' })
+    return
   }
 
   const accountId = process.env.R2_ACCOUNT_ID
@@ -42,30 +32,33 @@ export default async function handler(request: Request): Promise<Response> {
   const secretAccessKey = process.env.R2_SECRET_ACCESS_KEY
   const bucket = process.env.R2_BUCKET
   if (!accountId || !accessKeyId || !secretAccessKey || !bucket) {
-    return json(500, { error: 'server_not_configured' })
+    res.status(500).json({ error: 'server_not_configured' })
+    return
   }
 
-  let body: PresignRequestBody
-  try {
-    body = (await request.json()) as PresignRequestBody
-  } catch {
-    return json(400, { error: 'invalid_json' })
+  // Vercel parses JSON bodies into req.body for Content-Type: application/json.
+  const body: unknown = req.body
+  if (typeof body !== 'object' || body === null) {
+    res.status(400).json({ error: 'invalid_json' })
+    return
   }
-
-  const { fileName, fileSize, guestName } = body
+  const { fileName, fileSize, guestName } = body as Record<string, unknown>
   if (typeof fileName !== 'string' || typeof fileSize !== 'number') {
-    return json(400, { error: 'invalid_request' })
+    res.status(400).json({ error: 'invalid_request' })
+    return
   }
 
   const ext = extensionOf(fileName)
   const kind = kindOfExtension(ext)
   if (!kind) {
-    return json(415, { error: 'unsupported_type' })
+    res.status(415).json({ error: 'unsupported_type' })
+    return
   }
 
   const maxBytes = maxBytesFor(kind)
   if (!Number.isFinite(fileSize) || fileSize <= 0 || fileSize > maxBytes) {
-    return json(413, { error: 'file_too_large', maxBytes })
+    res.status(413).json({ error: 'file_too_large', maxBytes })
+    return
   }
 
   const contentType = CONTENT_TYPES[ext]
@@ -79,9 +72,7 @@ export default async function handler(request: Request): Promise<Response> {
   const key = `uploads/${day}/${guestSegment}/${random}-${baseName}.${ext}`
 
   const r2 = new AwsClient({ accessKeyId, secretAccessKey, service: 's3', region: 'auto' })
-  const objectUrl = new URL(
-    `https://${accountId}.r2.cloudflarestorage.com/${bucket}/${key}`,
-  )
+  const objectUrl = new URL(`https://${accountId}.r2.cloudflarestorage.com/${bucket}/${key}`)
   objectUrl.searchParams.set('X-Amz-Expires', String(URL_EXPIRY_SECONDS))
 
   const signed = await r2.sign(
@@ -89,5 +80,5 @@ export default async function handler(request: Request): Promise<Response> {
     { aws: { signQuery: true } },
   )
 
-  return json(200, { url: signed.url, key, contentType })
+  res.status(200).json({ url: signed.url, key, contentType })
 }
