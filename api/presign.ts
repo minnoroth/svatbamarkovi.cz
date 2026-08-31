@@ -6,7 +6,7 @@ import {
   kindOfExtension,
   maxBytesFor,
   sanitizeSegment,
-} from './_lib/upload-config'
+} from './_lib/upload-config.js'
 
 const URL_EXPIRY_SECONDS = 3600
 
