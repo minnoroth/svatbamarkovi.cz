@@ -72,7 +72,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse): 
   const key = `uploads/${day}/${guestSegment}/${random}-${baseName}.${ext}`
 
   const r2 = new AwsClient({ accessKeyId, secretAccessKey, service: 's3', region: 'auto' })
-  const objectUrl = new URL(`https://${accountId}.r2.cloudflarestorage.com/${bucket}/${key}`)
+  // Buckets created under a jurisdiction (e.g. EU) live on a different host:
+  // <account>.eu.r2.cloudflarestorage.com — set R2_JURISDICTION=eu for those.
+  const jurisdiction = process.env.R2_JURISDICTION
+  const host = jurisdiction
+    ? `${accountId}.${jurisdiction}.r2.cloudflarestorage.com`
+    : `${accountId}.r2.cloudflarestorage.com`
+  const objectUrl = new URL(`https://${host}/${bucket}/${key}`)
   objectUrl.searchParams.set('X-Amz-Expires', String(URL_EXPIRY_SECONDS))
 
   const signed = await r2.sign(
