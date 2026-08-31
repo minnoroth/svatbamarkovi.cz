@@ -186,6 +186,41 @@ export function MapPinIcon(props: IconProps) {
   return <IconBase {...props}>{INFO_ICONS.map}</IconBase>
 }
 
+export function UploadIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M7 17a4.5 4.5 0 0 1-.8-8.93A6 6 0 0 1 17.8 8.1 4.5 4.5 0 0 1 17.5 17" />
+      <path d="M12 12v9" />
+      <path d="M8.5 15.5 12 12l3.5 3.5" />
+    </IconBase>
+  )
+}
+
+export function CheckIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M4.5 12.5l5 5 10-11" />
+    </IconBase>
+  )
+}
+
+export function RetryIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M20 11a8 8 0 1 0-2.34 6.34" />
+      <path d="M20 5v6h-6" />
+    </IconBase>
+  )
+}
+
+export function CloseIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M6 6l12 12M18 6L6 18" />
+    </IconBase>
+  )
+}
+
 export function PhoneIcon(props: IconProps) {
   return (
     <IconBase {...props}>

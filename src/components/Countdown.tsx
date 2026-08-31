@@ -26,8 +26,30 @@ function CountdownCard({ value, unit, delay }: CountdownCardProps) {
 }
 
 export default function Countdown() {
-  const { days, hours, minutes, seconds, isOver } = useCountdown(WEDDING_DATE)
+  const { days, hours, minutes, seconds, isOver, isPast } = useCountdown(WEDDING_DATE)
   const headingRef = useReveal<HTMLHeadingElement>()
+
+  // The wedding day itself keeps the celebratory line; afterwards we thank
+  // the guests and point them to the photo upload section.
+  if (isPast) {
+    return (
+      <section id="countdown" className="bg-cream-50 py-20 px-4 text-center">
+        <p className="font-display text-[2.5rem] sm:text-[3rem] text-pistachio-600">
+          Bylo to nádherné!
+        </p>
+        <p className="font-sans text-body-lg text-taupe-600 font-light mt-4 max-w-md mx-auto">
+          Děkujeme, že jste náš velký den prožili s námi. Máte v telefonu fotky nebo videa?
+          Podělte se s námi níže.
+        </p>
+        <a
+          href="#momentky"
+          className="mt-8 inline-flex items-center gap-3 bg-pistachio-600 text-white font-sans text-body font-light tracking-wide px-8 py-3.5 rounded-full shadow-elevated hover:bg-pistachio-800 active:scale-[0.98] transition-all duration-200"
+        >
+          Nahrát momentky
+        </a>
+      </section>
+    )
+  }
 
   if (isOver) {
     return (

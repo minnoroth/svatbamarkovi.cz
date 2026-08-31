@@ -2,6 +2,7 @@ import './index.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Countdown from './components/Countdown'
+import UploadSection from './components/UploadSection'
 import Schedule from './components/Schedule'
 import GuestInfo from './components/GuestInfo'
 import Dresscode from './components/Dresscode'
@@ -16,6 +17,7 @@ function App() {
       <main>
         <Hero />
         <Countdown />
+        <UploadSection />
         <Schedule />
         <GuestInfo />
         <Dresscode />

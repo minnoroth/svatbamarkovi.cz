@@ -14,6 +14,7 @@ export const WEDDING_DATE = new Date('2026-08-29T11:00:00')
 export const MAP_URL = 'https://mapy.com/s/konategono'
 
 export const NAV_LINKS: NavLink[] = [
+  { label: 'Momentky', href: '#momentky' },
   { label: 'Harmonogram', href: '#harmonogram' },
   { label: 'Informace', href: '#informace' },
   { label: 'Dresscode', href: '#dresscode' },
