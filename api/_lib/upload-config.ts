@@ -1,6 +1,9 @@
 /**
  * Shared upload rules — imported by both the React app (src/) and the
- * Vercel serverless function (api/). Keep this file dependency-free.
+ * Vercel serverless function (api/presign.ts). Lives under api/_lib so the
+ * function build never has to reach outside the api/ directory (the
+ * underscore prefix keeps it from being deployed as an endpoint).
+ * Keep this file dependency-free.
  */
 
 export const IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'heic', 'heif', 'webp', 'avif', 'gif'] as const

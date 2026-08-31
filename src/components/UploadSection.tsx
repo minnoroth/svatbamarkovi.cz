@@ -4,7 +4,7 @@ import {
   extensionOf,
   kindOfExtension,
   maxBytesFor,
-} from '../../shared/upload-config'
+} from '../../api/_lib/upload-config'
 import { useReveal } from '../hooks/useReveal'
 import OrnamentalDivider from './OrnamentalDivider'
 import { CheckIcon, CloseIcon, RetryIcon, UploadIcon } from './icons'
