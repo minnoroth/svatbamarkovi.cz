@@ -1,8 +1,6 @@
 import OrnamentalDivider from './OrnamentalDivider'
 import FloralCorner from './FloralCorner'
 import heroImage from '../assets/hero.jpg'
-import { QUIZ_URL } from '../data/weddingData'
-import { ArrowRightIcon } from './icons'
 
 export default function Hero() {
   return (
@@ -24,17 +22,6 @@ export default function Hero() {
       {/* Corner ornaments */}
       <FloralCorner className="absolute top-20 left-4 opacity-60 hidden md:block" />
       <FloralCorner flip className="absolute top-20 right-4 opacity-60 hidden md:block" />
-
-      {/* Quiz CTA — pinned right under the navbar so it is the first thing guests can tap */}
-      <a
-        href={QUIZ_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="absolute top-20 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-3 bg-gold-300 text-brown-900 font-sans text-body font-medium tracking-wide px-7 py-3.5 rounded-full shadow-elevated ring-4 ring-white/30 hover:bg-gold-500 active:scale-[0.98] transition-all duration-200 whitespace-nowrap animate-fade-in"
-      >
-        Svatební kvíz
-        <ArrowRightIcon size={18} />
-      </a>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center px-6">

@@ -186,14 +186,6 @@ export function MapPinIcon(props: IconProps) {
   return <IconBase {...props}>{INFO_ICONS.map}</IconBase>
 }
 
-export function ArrowRightIcon(props: IconProps) {
-  return (
-    <IconBase {...props}>
-      <path d="M5 12h14M12 5l7 7-7 7" />
-    </IconBase>
-  )
-}
-
 export function PhoneIcon(props: IconProps) {
   return (
     <IconBase {...props}>

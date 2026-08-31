@@ -36,8 +36,6 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                target={link.external ? '_blank' : undefined}
-                rel={link.external ? 'noopener noreferrer' : undefined}
                 className="font-sans text-label uppercase tracking-[0.12em] text-brown-900 hover:text-pistachio-600 transition-colors duration-150"
               >
                 {link.label}
@@ -71,8 +69,6 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              target={link.external ? '_blank' : undefined}
-              rel={link.external ? 'noopener noreferrer' : undefined}
               onClick={handleNavClick}
               className="font-serif text-h3 text-brown-900 font-light italic hover:text-pistachio-600 transition-colors duration-150"
             >

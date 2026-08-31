@@ -12,8 +12,6 @@ export interface Swatch {
 export interface NavLink {
   label: string
   href: string
-  /** Opens in a new tab (external URL). */
-  external?: boolean
 }
 
 export type VenueId = 'lomec' | 'libejovice'
